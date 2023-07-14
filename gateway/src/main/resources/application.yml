@@ -1,0 +1,28 @@
+spring:
+  #nacos配置
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        # 配置Nacos注册中心地址
+#        server-addr: 39.107.156.214:8848
+        server-addr: localhost:8848
+    gateway:
+      routes: # 用来配置网关路由规则
+        - id: warehousing-management
+          uri: lb://warehousing-management
+          predicates:
+            - Path=/warehousing/**
+          filters:
+            - StripPrefix=1
+
+        - id: external-service
+          uri: lb://external-service
+          predicates:
+            - Path=/external/**
+          filters:
+            - StripPrefix=1
+  devtools:
+    restart:
+      enabled: true

@@ -1,0 +1,28 @@
+server:
+  port: 8101
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #测试的时候可以先替换成本地数据库
+#    url: jdbc:mysql://123.57.133.233:3306/external?useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: 123456
+    url: jdbc:mysql://localhost:3306/warehouse?useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 543312abc
+  #nacos配置
+  application:
+    name: external-service
+  cloud:
+    nacos:
+      discovery:
+        # 配置Nacos注册中心地址
+#      server-addr: 39.107.156.214:8848
+        server-addr: localhost:8848
+  devtools:
+    restart:
+      enabled: true
+mybatis-plus:
+  configuration:
+    ### 开启打印sql配置
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
